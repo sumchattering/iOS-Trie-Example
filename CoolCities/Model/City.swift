@@ -12,7 +12,7 @@ import Foundation
 
 import Foundation
 
-struct City: Codable {
+struct City: Codable, Hashable {
     
     let identifier: Int64
     let country: String
@@ -24,7 +24,7 @@ struct City: Codable {
     }
 }
 
-struct CityCoord: Codable {
+struct CityCoord: Codable, Hashable {
     
     let lat: Double
     let lon: Double
