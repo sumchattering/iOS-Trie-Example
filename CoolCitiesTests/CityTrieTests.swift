@@ -10,52 +10,57 @@ import XCTest
 @testable import CoolCities
 
 class CityTrieTests: XCTestCase {
-    var wordArray: [String]?
-    var trie = CityTrie()
     
-    /// Makes sure that the wordArray and trie are initialized before each test.
-    override func setUp() {
-        super.setUp()
-        createWordArray()
-        insertWordsIntoTrie()
-    }
+    let cityAlangulam = City(identifier: 1279058, country: "IN", name: "Alangulam", coord: CityCoord(lat: 8.86667, lon: 77.5))
+    let cityAlangayam = City(identifier: 1279061, country: "IN", name: "Alangayam", coord: CityCoord(lat: 12.6, lon: 78.75))
+    let cityAlandur = City(identifier: 1279064, country: "IN", name: "Alandur", coord: CityCoord(lat: 13.0025, lon: 80.206108))
+    let cityHokkaido = City(identifier: 1279064, country: "JP", name: "Hokkaidō", coord: CityCoord(lat: 43.06451, lon: 141.346603))
     
-    /// Don't need to do anything here because the wordArray and trie should
-    /// stay around.
-    override func tearDown() {
-        super.tearDown()
-    }
-    
-    /// Reads words from the dictionary file and inserts them into an array.  If
-    /// the word array already has words, do nothing.  This allows running all
-    /// tests without repeatedly filling the array with the same values.
-    func createWordArray() {
-        guard wordArray == nil else {
+    var fullCityArray: [City]?
+    func createFullCityArray() {
+        guard fullCityArray == nil else {
             return
         }
-        let testBundle = Bundle(for: type(of: self))
-        let resourcePath = testBundle.resourcePath! as NSString
-        let fileName = "dictionary.txt"
-        let filePath = resourcePath.appendingPathComponent(fileName)
         
-        var data: String?
+        let fileURL = Bundle.main.url(forResource: "cities", withExtension: "json")
+        XCTAssertNotNil(fileURL)
+        
+        let cityData = FileManager.default.contents(atPath: fileURL!.path)
+        XCTAssertNotNil(cityData)
+        
         do {
-            data = try String(contentsOfFile: filePath, encoding: String.Encoding.utf8)
-        } catch let error as NSError {
-            XCTAssertNil(error)
+            let decoder = JSONDecoder()
+            fullCityArray = try decoder.decode([City].self, from: cityData!)
+        } catch let error {
+            print(error)
         }
-        XCTAssertNotNil(data)
-        let dictionarySize = 162825
-        wordArray = data!.components(separatedBy: "\n")
-        XCTAssertEqual(wordArray!.count, dictionarySize)
+        
+        XCTAssertNotNil(fullCityArray)
+        XCTAssert(fullCityArray!.count > 0)
     }
     
-    /// Inserts words into a trie.  If the trie is non-empty, don't do anything.
-    func insertWordsIntoTrie() {
-        guard let wordArray = wordArray, trie.count == 0 else { return }
-        for word in wordArray {
-            trie.insert(word: word)
+    var smallCityArray: [City]?
+    func createSmallCityArray() {
+        guard smallCityArray == nil else {
+            return
         }
+        
+        let testBundle = Bundle(for: type(of: self))
+        let fileURL = testBundle.url(forResource: "citiestestdata", withExtension: "json")
+        XCTAssertNotNil(fileURL)
+        
+        let cityData = FileManager.default.contents(atPath: fileURL!.path)
+        XCTAssertNotNil(cityData)
+        
+        do {
+            let decoder = JSONDecoder()
+            smallCityArray = try decoder.decode([City].self, from: cityData!)
+        } catch let error {
+            print(error)
+        }
+        
+        XCTAssertNotNil(smallCityArray)
+        XCTAssert(smallCityArray!.count > 0)
     }
     
     /// Tests that a newly created trie has zero words.
@@ -67,128 +72,92 @@ class CityTrieTests: XCTestCase {
     /// Tests the insert method
     func testInsert() {
         let trie = CityTrie()
-        trie.insert(word: "cute")
-        trie.insert(word: "cutie")
-        trie.insert(word: "fred")
-        XCTAssertTrue(trie.contains(word: "cute"))
-        XCTAssertFalse(trie.contains(word: "cut"))
-        trie.insert(word: "cut")
-        XCTAssertTrue(trie.contains(word: "cut"))
+        trie.insert(city: cityAlandur)
+        trie.insert(city: cityAlangayam)
+        trie.insert(city: cityHokkaido)
+        XCTAssertTrue(trie.contains(city: cityAlandur))
+        XCTAssertFalse(trie.contains(city: cityAlangulam))
+        trie.insert(city: cityAlangulam)
+        XCTAssertTrue(trie.contains(city: cityAlangulam))
         XCTAssertEqual(trie.count, 4)
     }
     
     /// Tests the remove method
     func testRemove() {
         let trie = CityTrie()
-        trie.insert(word: "cute")
-        trie.insert(word: "cut")
+        trie.insert(city: cityAlandur)
+        trie.insert(city: cityAlangayam)
         XCTAssertEqual(trie.count, 2)
-        trie.remove(word: "cute")
-        XCTAssertTrue(trie.contains(word: "cut"))
-        XCTAssertFalse(trie.contains(word: "cute"))
+        trie.remove(city: cityAlandur)
+        XCTAssertTrue(trie.contains(city: cityAlangayam))
+        XCTAssertFalse(trie.contains(city: cityAlandur))
         XCTAssertEqual(trie.count, 1)
     }
     
     /// Tests the words property
     func testWords() {
         let trie = CityTrie()
-        var words = trie.words
-        XCTAssertEqual(words.count, 0)
-        trie.insert(word: "foobar")
-        words = trie.words
-        XCTAssertEqual(words[0], "foobar")
-        XCTAssertEqual(words.count, 1)
+        var cities = trie.cities
+        XCTAssertEqual(cities.count, 0)
+        trie.insert(city: cityAlangulam)
+        cities = trie.cities
+        XCTAssertEqual(cities[0], cityAlangulam)
+        XCTAssertEqual(cities.count, 1)
     }
     
     /// Tests the performance of the insert method.
-    func testInsertPerformance() {
+    func testSmallInsertPerformance() {
+        createSmallCityArray()
+        
+        var trie: CityTrie?
         self.measure {
-            let trie = CityTrie()
-            for word in self.wordArray! {
-                trie.insert(word: word)
+            trie = CityTrie()
+            for city in self.smallCityArray! {
+                trie!.insert(city: city)
             }
         }
-        XCTAssertGreaterThan(trie.count, 0)
-        XCTAssertEqual(trie.count, wordArray?.count)
+        XCTAssertGreaterThan(trie!.count, 0)
+        XCTAssertEqual(trie!.count, smallCityArray?.count)
     }
     
-    /// Tests the performance of the insert method when the words are already
-    /// present.
-    func testInsertAgainPerformance() {
+    /// Tests the performance of the insert method.
+    func testFullInsertPerformance() {
+        createFullCityArray()
+        
+        var trie: CityTrie?
         self.measure {
-            for word in self.wordArray! {
-                self.trie.insert(word: word)
+            trie = CityTrie()
+            for city in self.fullCityArray! {
+                trie!.insert(city: city)
             }
         }
-    }
-    
-    /// Tests the performance of the contains method.
-    func testContainsPerformance() {
-        self.measure {
-            for word in self.wordArray! {
-                XCTAssertTrue(self.trie.contains(word: word))
-            }
-        }
-    }
-    
-    /// Tests the performance of the remove method.  Since setup has already put
-    /// words into the trie, remove them before measuring performance.
-    func testRemovePerformance() {
-        for word in self.wordArray! {
-            self.trie.remove(word: word)
-        }
-        self.measure {
-            self.insertWordsIntoTrie()
-            for word in self.wordArray! {
-                self.trie.remove(word: word)
-            }
-        }
-        XCTAssertEqual(trie.count, 0)
-    }
-    
-    /// Tests the performance of the words computed property.  Also tests to see
-    /// if it worked properly.
-    func testWordsPerformance() {
-        var words: [String]?
-        self.measure {
-            words = self.trie.words
-        }
-        XCTAssertEqual(words?.count, trie.count)
-        for word in words! {
-            XCTAssertTrue(self.trie.contains(word: word))
-        }
-    }
-    
-    /// Tests the archiving and unarchiving of the trie.
-    func testArchiveAndUnarchive() {
-        let resourcePath = Bundle.main.resourcePath! as NSString
-        let fileName = "dictionary-archive"
-        let filePath = resourcePath.appendingPathComponent(fileName)
-        NSKeyedArchiver.archiveRootObject(trie, toFile: filePath)
-        let trieCopy = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? CityTrie
-        XCTAssertEqual(trieCopy?.count, trie.count)
+        XCTAssertGreaterThan(trie!.count, 0)
+        XCTAssertEqual(trie!.count, fullCityArray?.count)
     }
     
     func testFindWordsWithPrefix() {
+        createFullCityArray()
         let trie = CityTrie()
-        trie.insert(word: "test")
-        trie.insert(word: "another")
-        trie.insert(word: "exam")
-        let wordsAll = trie.findWordsWithPrefix(prefix: "")
-        XCTAssertEqual(wordsAll.sorted(), ["another", "exam", "test"])
-        let words = trie.findWordsWithPrefix(prefix: "ex")
-        XCTAssertEqual(words, ["exam"])
-        trie.insert(word: "examination")
-        let words2 = trie.findWordsWithPrefix(prefix: "exam")
-        XCTAssertEqual(words2, ["exam", "examination"])
-        let noWords = trie.findWordsWithPrefix(prefix: "tee")
-        XCTAssertEqual(noWords, [])
-        let unicodeWord = "😬😎"
-        trie.insert(word: unicodeWord)
-        let wordsUnicode = trie.findWordsWithPrefix(prefix: "😬")
-        XCTAssertEqual(wordsUnicode, [unicodeWord])
-        trie.insert(word: "Team")
-        let wordsUpperCase = trie.findWordsWithPrefix(prefix: "Te")
-        XCTAssertEqual(wordsUpperCase.sorted(), ["team", "test"])
+        for city in fullCityArray! {
+            trie.insert(city: city)
+        }
+    }
+
+    func testFindWordsWithPrefixPerformance() {
+        createFullCityArray()
+        let trie = CityTrie()
+        for city in fullCityArray! {
+            trie.insert(city: city)
+        }
+        
+        let citiesStartingWithAl1 = trie.findCitiesWithPrefix(prefix: "Al")
+        XCTAssertNotNil(citiesStartingWithAl1)
+        XCTAssert(citiesStartingWithAl1.count == 2198)
+        
+        let citiesStartingWithAl2 = trie.findCitiesWithPrefix(prefix: "al")
+        XCTAssertNotNil(citiesStartingWithAl2)
+        XCTAssert(citiesStartingWithAl2.count == 2198)
+        
+        XCTAssertEqual(citiesStartingWithAl1, citiesStartingWithAl2)
     }
 }

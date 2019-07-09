@@ -25,7 +25,7 @@
 		2D454B6F22D532CE004A32A4 /* CityRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D454B6E22D532CE004A32A4 /* CityRepositoryTests.swift */; };
 		2D454B7122D5386C004A32A4 /* CityTrie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D454B7022D5386C004A32A4 /* CityTrie.swift */; };
 		2D454B7322D538A8004A32A4 /* CityTrieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D454B7222D538A8004A32A4 /* CityTrieTests.swift */; };
-		2D454B7522D53BC8004A32A4 /* dictionary.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2D454B7422D53BC8004A32A4 /* dictionary.txt */; };
+		2D454B7722D550CF004A32A4 /* citiestestdata.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D454B7622D550CF004A32A4 /* citiestestdata.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +71,7 @@
 		2D454B6E22D532CE004A32A4 /* CityRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityRepositoryTests.swift; sourceTree = "<group>"; };
 		2D454B7022D5386C004A32A4 /* CityTrie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTrie.swift; sourceTree = "<group>"; };
 		2D454B7222D538A8004A32A4 /* CityTrieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTrieTests.swift; sourceTree = "<group>"; };
-		2D454B7422D53BC8004A32A4 /* dictionary.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dictionary.txt; sourceTree = "<group>"; };
+		2D454B7622D550CF004A32A4 /* citiestestdata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = citiestestdata.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,10 +137,10 @@
 		2D454B3F22D5287E004A32A4 /* CoolCitiesTests */ = {
 			isa = PBXGroup;
 			children = (
+				2D454B7622D550CF004A32A4 /* citiestestdata.json */,
 				2D454B5C22D52985004A32A4 /* CityTests.swift */,
 				2D454B7222D538A8004A32A4 /* CityTrieTests.swift */,
 				2D454B6E22D532CE004A32A4 /* CityRepositoryTests.swift */,
-				2D454B7422D53BC8004A32A4 /* dictionary.txt */,
 				2D454B6322D52B3B004A32A4 /* testcity.json */,
 				2D454B6222D52B3B004A32A4 /* testcities.json */,
 				2D454B4222D5287E004A32A4 /* Info.plist */,
@@ -310,9 +310,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D454B7522D53BC8004A32A4 /* dictionary.txt in Resources */,
 				2D454B6522D52B3B004A32A4 /* testcity.json in Resources */,
 				2D454B6422D52B3B004A32A4 /* testcities.json in Resources */,
+				2D454B7722D550CF004A32A4 /* citiestestdata.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
