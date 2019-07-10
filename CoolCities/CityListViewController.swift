@@ -10,8 +10,11 @@ import UIKit
 
 class CityListViewController: UITableViewController {
 
+    @IBOutlet weak var searchBar: UISearchBar?
+    
     var cityMapViewController: CityMapViewController? = nil
     var cities = [City]()
+    let cityRepository = RepositoryInjection.provideCityRepository()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +22,8 @@ class CityListViewController: UITableViewController {
             let controllers = split.viewControllers
             cityMapViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? CityMapViewController
         }
+        self.searchBar?.delegate = self
+        self.loadCities()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -26,7 +31,20 @@ class CityListViewController: UITableViewController {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
-
+    
+    // MARK: - Cities
+    
+    private func loadCities(query: String? = nil) {
+        cityRepository.getCities(prefix: query, completion: { [weak self] cities, _ in
+            if let cities = cities {
+                self?.cities = cities
+                self?.tableView.reloadData()
+            } else {
+                // handle error
+            }
+        })
+    }
+    
     // MARK: - Segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -60,3 +78,20 @@ class CityListViewController: UITableViewController {
 
 }
 
+extension CityListViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // to limit network activity, reload half a second after last key press.
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.reload), object: nil)
+        self.perform(#selector(self.reload), with: nil, afterDelay: 0.3)
+    }
+    
+    @objc func reload(_ searchBar: UISearchBar) {
+        guard let query = self.searchBar?.text, query.trimmingCharacters(in: .whitespaces) != "" else {
+            loadCities()
+            return
+        }
+        
+        loadCities(query: query)
+    }
+}
