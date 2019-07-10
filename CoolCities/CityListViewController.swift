@@ -23,11 +23,11 @@ class CityListViewController: UITableViewController {
             cityMapViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? CityMapViewController
         }
         self.searchBar?.delegate = self
+        self.searchBar?.returnKeyType = .done
         self.loadCities()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.title = "Cities"
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
@@ -72,7 +72,8 @@ class CityListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let city = cities[indexPath.row]
-        cell.textLabel!.text = city.name
+        cell.textLabel!.text = "\(city.name), \(city.country)"
+        cell.detailTextLabel!.text = "(\(city.coord.lat), \(city.coord.lon))"
         return cell
     }
 
