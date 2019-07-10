@@ -42,7 +42,7 @@ This is done using a split view controller and a simple map view with one annota
 
 >>>> Contain a button that, when tapped, opens an information screen about the selected city. opens an information screen about the selected city. The code of this screen is available [here](https://TODO).
 
-Looks like you guys forgot to add a link to the code. I guess I will skip this for now :)
+Looks like you guys forgot to add a link to the information screen. I guess I will skip this for now :)
 
 >>>> Create a dynamic UI that follows the [wireframe](wireframes). Hence, when in [portrait](wireframes/portrait.png) different screens should be used for the list and map but when in [landscape](wireframes/landscape.png), a single screen should be used.
 
@@ -54,14 +54,14 @@ These tests can be found in CityRepositoryTests, CityTests and CityTrieTests.
 
 >>>> Provide UI/unit tests for the information screen code we provided you. You are allowed to refactor if needed.
 
-
+Since the code for the information screen hasnt been linked I couldnt complete this either. Please send me the code for the information screen if you want me to prepare this step before our next interview :)
 
 
 ## Additional requirements/restrictions:
 
 >>>> Database implementations are forbidden.
 
-No databases have been used. The trie can be archived to optimize the load time in subsequent launches but that was not in the requirements.
+No databases have been used. The trie can be archived to optimize the load time in subsequent launches but that was not in the requirements so I havent optimized the load time.
 
 >>>> Provide a README.md explaining your approach to solve the search problem and any other important decision you took or assumptions you made during the implementation.
 

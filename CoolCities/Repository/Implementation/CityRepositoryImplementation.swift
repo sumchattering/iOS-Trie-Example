@@ -42,7 +42,13 @@ class CityRepositoryImplementation: CityRepository {
             return
         }
         
-        let sortedCities = allCities.sorted(by: { $0.name < $1.name })
+        let sortedCities = allCities.sorted(by: { city1, city2 in
+            if city1.name != city2.name { 
+                return city1.name < city2.name
+            } else {
+                return city1.country < city2.country
+            }
+        })
         
         self.allCities = sortedCities
         self.cityTrie = CityTrie()
