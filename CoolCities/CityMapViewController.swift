@@ -1,5 +1,5 @@
 //
-//  DetailViewController.swift
+//  CityMapViewController.swift
 //  CoolCities
 //
 //  Created by Sumeru Chatterjee on 09/07/2019.
@@ -8,16 +8,15 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class CityMapViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
 
-
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = detailItem {
+        if let city = city {
             if let label = detailDescriptionLabel {
-                label.text = detail.description
+                label.text = city.name
             }
         }
     }
@@ -28,7 +27,7 @@ class DetailViewController: UIViewController {
         configureView()
     }
 
-    var detailItem: NSDate? {
+    var city: City? {
         didSet {
             // Update the view.
             configureView()

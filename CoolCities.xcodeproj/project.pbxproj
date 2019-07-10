@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2D454B2A22D5287D004A32A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D454B2922D5287D004A32A4 /* AppDelegate.swift */; };
-		2D454B2C22D5287D004A32A4 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D454B2B22D5287D004A32A4 /* MasterViewController.swift */; };
-		2D454B2E22D5287D004A32A4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D454B2D22D5287D004A32A4 /* DetailViewController.swift */; };
+		2D454B2C22D5287D004A32A4 /* CityListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D454B2B22D5287D004A32A4 /* CityListViewController.swift */; };
+		2D454B2E22D5287D004A32A4 /* CityMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D454B2D22D5287D004A32A4 /* CityMapViewController.swift */; };
 		2D454B3122D5287D004A32A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D454B2F22D5287D004A32A4 /* Main.storyboard */; };
 		2D454B3322D5287E004A32A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D454B3222D5287E004A32A4 /* Assets.xcassets */; };
 		2D454B3622D5287E004A32A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D454B3422D5287E004A32A4 /* LaunchScreen.storyboard */; };
@@ -48,8 +48,8 @@
 /* Begin PBXFileReference section */
 		2D454B2622D5287D004A32A4 /* CoolCities.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoolCities.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D454B2922D5287D004A32A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2D454B2B22D5287D004A32A4 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		2D454B2D22D5287D004A32A4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		2D454B2B22D5287D004A32A4 /* CityListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListViewController.swift; sourceTree = "<group>"; };
+		2D454B2D22D5287D004A32A4 /* CityMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityMapViewController.swift; sourceTree = "<group>"; };
 		2D454B3022D5287D004A32A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2D454B3222D5287E004A32A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2D454B3522D5287E004A32A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -124,8 +124,8 @@
 			isa = PBXGroup;
 			children = (
 				2D454B2922D5287D004A32A4 /* AppDelegate.swift */,
-				2D454B2B22D5287D004A32A4 /* MasterViewController.swift */,
-				2D454B2D22D5287D004A32A4 /* DetailViewController.swift */,
+				2D454B2B22D5287D004A32A4 /* CityListViewController.swift */,
+				2D454B2D22D5287D004A32A4 /* CityMapViewController.swift */,
 				2D454B6622D52C62004A32A4 /* Repository */,
 				2D454B5922D5288F004A32A4 /* Model */,
 				2D454B5E22D529C7004A32A4 /* Resources */,
@@ -330,9 +330,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D454B2E22D5287D004A32A4 /* DetailViewController.swift in Sources */,
+				2D454B2E22D5287D004A32A4 /* CityMapViewController.swift in Sources */,
 				2D454B7122D5386C004A32A4 /* CityTrie.swift in Sources */,
-				2D454B2C22D5287D004A32A4 /* MasterViewController.swift in Sources */,
+				2D454B2C22D5287D004A32A4 /* CityListViewController.swift in Sources */,
 				2D454B6D22D52D25004A32A4 /* CityRepositoryImplementation.swift in Sources */,
 				2D454B5B22D528E5004A32A4 /* City.swift in Sources */,
 				2D454B6A22D52CED004A32A4 /* RepositoryInjection.swift in Sources */,
