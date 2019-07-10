@@ -2,7 +2,7 @@
 
 ###  Hey guys! So this turned out to be a bit more difficult than the few hours that I had assigned for it (Was fun though!) Now to finish the readme quickly lets go through your requirements and how they have been tackled in the project. 
 
-Please note. Since I have paid a lot of attention on the performance I havent focused a lot on app architecture or localizations or other stuff. If you would like me to refactor this using VIPER or MVP please let me know and I will have it ready before our next round of interview. Usually I use VIPER in my projects.
+### Please note -> Since I have paid a lot of attention on the performance I havent focused a lot on app architecture or localizations or other stuff. If you would like me to refactor this using VIPER or MVP please let me know and I will have it ready before our next round of interview. Usually I use VIPER in my projects.
 
 >>>> Download the list of cities 
 
@@ -22,7 +22,7 @@ Yes we convert the query to lowercase and trie is case insensitive by default
 
 >>>> Display these cities in a scrollable list, in alphabetical order (city first, country after). Hence, "Denver, US" should appear before "Sydney, Australia".
 
-
+Yes the cities have been sorted at load time in alphabetical order with first name and then country. Please see CityRepositoryImplenation for more details
 
 >>>> The UI should be as responsive as possible while typing in a filter.
 
@@ -90,3 +90,8 @@ Deployment target has been set to iOS 10
 >>>> 3rd party libraries are forbidden.
 
 None have been used. I initially did not read this and then had to remake the project :D
+
+
+## Feel free to reach me at sumeru.chatterjee@me.com or on whatsapp at +31638146100 for any possible questions.
+
+# Cheers :)
