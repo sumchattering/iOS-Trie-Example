@@ -26,7 +26,6 @@
 		2D454B7122D5386C004A32A4 /* CityTrie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D454B7022D5386C004A32A4 /* CityTrie.swift */; };
 		2D454B7322D538A8004A32A4 /* CityTrieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D454B7222D538A8004A32A4 /* CityTrieTests.swift */; };
 		2D454B7722D550CF004A32A4 /* citiestestdata.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D454B7622D550CF004A32A4 /* citiestestdata.json */; };
-		2D454B7922D57E3F004A32A4 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D454B7822D57E3F004A32A4 /* AboutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,7 +72,6 @@
 		2D454B7022D5386C004A32A4 /* CityTrie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTrie.swift; sourceTree = "<group>"; };
 		2D454B7222D538A8004A32A4 /* CityTrieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTrieTests.swift; sourceTree = "<group>"; };
 		2D454B7622D550CF004A32A4 /* citiestestdata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = citiestestdata.json; sourceTree = "<group>"; };
-		2D454B7822D57E3F004A32A4 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +126,6 @@
 				2D454B2922D5287D004A32A4 /* AppDelegate.swift */,
 				2D454B2B22D5287D004A32A4 /* CityListViewController.swift */,
 				2D454B2D22D5287D004A32A4 /* CityMapViewController.swift */,
-				2D454B7822D57E3F004A32A4 /* AboutViewController.swift */,
 				2D454B6622D52C62004A32A4 /* Repository */,
 				2D454B5922D5288F004A32A4 /* Model */,
 				2D454B5E22D529C7004A32A4 /* Resources */,
@@ -336,7 +333,6 @@
 				2D454B2E22D5287D004A32A4 /* CityMapViewController.swift in Sources */,
 				2D454B7122D5386C004A32A4 /* CityTrie.swift in Sources */,
 				2D454B2C22D5287D004A32A4 /* CityListViewController.swift in Sources */,
-				2D454B7922D57E3F004A32A4 /* AboutViewController.swift in Sources */,
 				2D454B6D22D52D25004A32A4 /* CityRepositoryImplementation.swift in Sources */,
 				2D454B5B22D528E5004A32A4 /* City.swift in Sources */,
 				2D454B6A22D52CED004A32A4 /* RepositoryInjection.swift in Sources */,

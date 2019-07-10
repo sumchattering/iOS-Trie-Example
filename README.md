@@ -40,9 +40,9 @@ We do have that. Didnt spend too much time on this but usually I dont use storyb
 
 This is done using a split view controller and a simple map view with one annotation.
 
->>>> Contain a button that, when tapped, opens an information screen about the selected city. The code of this screen is available 
+>>>> Contain a button that, when tapped, opens an information screen about the selected city. opens an information screen about the selected city. The code of this screen is available [here](https://TODO).
 
-I have added the code from the screen in AboutViewController
+Looks like you guys forgot to add a link to the code. I guess I will skip this for now :)
 
 >>>> Create a dynamic UI that follows the [wireframe](wireframes). Hence, when in [portrait](wireframes/portrait.png) different screens should be used for the list and map but when in [landscape](wireframes/landscape.png), a single screen should be used.
 
