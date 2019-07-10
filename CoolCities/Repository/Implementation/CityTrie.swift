@@ -114,6 +114,7 @@ extension CityTrie {
         }        
         if var exisitingCities = wordCitiesMap[word.lowercased()] {
             exisitingCities.append(city)
+            wordCitiesMap[word.lowercased()] = exisitingCities
         } else {
             wordCitiesMap[word.lowercased()] = [city]
         }

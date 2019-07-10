@@ -15,7 +15,8 @@ enum CityRepositoryError: Error {
 
 class CityRepositoryImplementation: CityRepository {
     
-    var cities: [City]?
+    var cityTrie: CityTrie?
+    var allCities: [City]?
     
     func preloadCities() {
         guard let fileURL = Bundle.main.url(forResource: "cities", withExtension: "json") else {
@@ -41,26 +42,26 @@ class CityRepositoryImplementation: CityRepository {
             return
         }
         
-        self.cities = allCities
+        self.allCities = allCities
+        self.cityTrie = CityTrie()
+        for city in allCities {
+            self.cityTrie?.insert(city: city)
+        }
     }
     
     func getCities(prefix: String?, completion: GetCitiesCompletion) {
         
-        guard let cities = self.cities else {
+        guard let cityTrie = cityTrie, let allCities = allCities, cityTrie.count > 0, allCities.count > 0 else {
             completion(nil, CityRepositoryError.initializationError)
             return
         }
         
         guard let lowercasePrefix = prefix?.lowercased() else {
-            completion(cities, nil)
+            completion(allCities, nil)
             return
         }
         
-        let filteredCities = cities.filter { city in
-            let citynameLowercase = city.name.lowercased()
-            return citynameLowercase.hasPrefix(lowercasePrefix)
-        }
-        
+        let filteredCities = cityTrie.findCitiesWithPrefix(prefix: lowercasePrefix)
         completion(filteredCities, nil)
     }
     

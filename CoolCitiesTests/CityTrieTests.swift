@@ -135,12 +135,53 @@ class CityTrieTests: XCTestCase {
         XCTAssertEqual(trie!.count, fullCityArray?.count)
     }
     
-    func testFindWordsWithPrefix() {
+    func testFindWordsWithPrefixSmall() {
+        createSmallCityArray()
+        let trie = CityTrie()
+        for city in smallCityArray! {
+            trie.insert(city: city)
+        }
+        
+        let citiesStartingWithATrue = smallCityArray?.filter({ $0.name.lowercased().hasPrefix("a")  })
+        
+        let citiesStartingWithA1 = trie.findCitiesWithPrefix(prefix: "A")
+        XCTAssertNotNil(citiesStartingWithA1)
+        for city in citiesStartingWithATrue! {
+            if !citiesStartingWithA1.contains(city) {
+                XCTFail("Could not find city \(city)")
+            }
+        }
+        XCTAssert(citiesStartingWithA1.count == citiesStartingWithATrue?.count)
+        
+        let citiesStartingWithA2 = trie.findCitiesWithPrefix(prefix: "a")
+        XCTAssertNotNil(citiesStartingWithA2)
+        for city in citiesStartingWithATrue! {
+            if !citiesStartingWithA2.contains(city) {
+                XCTFail("Could not find city \(city)")
+            }
+        }
+        XCTAssert(citiesStartingWithA2.count == citiesStartingWithATrue?.count)
+        XCTAssertEqual(citiesStartingWithA1, citiesStartingWithA2)
+    }
+    
+    func testFindWordsWithPrefixFull() {
         createFullCityArray()
         let trie = CityTrie()
         for city in fullCityArray! {
             trie.insert(city: city)
         }
+        
+        let citiesStartingWithATrue = fullCityArray?.filter({ $0.name.lowercased().hasPrefix("al")  })
+
+        let citiesStartingWithAl1 = trie.findCitiesWithPrefix(prefix: "Al")
+        XCTAssertNotNil(citiesStartingWithAl1)
+        XCTAssert(citiesStartingWithAl1.count == citiesStartingWithATrue?.count)
+        
+        let citiesStartingWithAl2 = trie.findCitiesWithPrefix(prefix: "al")
+        XCTAssertNotNil(citiesStartingWithAl2)
+        XCTAssert(citiesStartingWithAl2.count == citiesStartingWithATrue?.count)
+        
+        XCTAssertEqual(citiesStartingWithAl1, citiesStartingWithAl2)
     }
 
     func testFindWordsWithPrefixPerformance() {
@@ -149,15 +190,12 @@ class CityTrieTests: XCTestCase {
         for city in fullCityArray! {
             trie.insert(city: city)
         }
+        var citiesStartingWithAl: [City]?
+        self.measure {
+            citiesStartingWithAl = trie.findCitiesWithPrefix(prefix: "Al")
+        }
         
-        let citiesStartingWithAl1 = trie.findCitiesWithPrefix(prefix: "Al")
-        XCTAssertNotNil(citiesStartingWithAl1)
-        XCTAssert(citiesStartingWithAl1.count == 2198)
-        
-        let citiesStartingWithAl2 = trie.findCitiesWithPrefix(prefix: "al")
-        XCTAssertNotNil(citiesStartingWithAl2)
-        XCTAssert(citiesStartingWithAl2.count == 2198)
-        
-        XCTAssertEqual(citiesStartingWithAl1, citiesStartingWithAl2)
+        XCTAssertNotNil(citiesStartingWithAl)
+        XCTAssert(citiesStartingWithAl!.count == 2198)
     }
 }
