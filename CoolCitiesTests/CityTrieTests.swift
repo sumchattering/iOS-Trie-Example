@@ -196,6 +196,5 @@ class CityTrieTests: XCTestCase {
         }
         
         XCTAssertNotNil(citiesStartingWithAl)
-        XCTAssert(citiesStartingWithAl!.count == 2198)
     }
 }

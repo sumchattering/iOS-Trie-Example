@@ -42,9 +42,11 @@ class CityRepositoryImplementation: CityRepository {
             return
         }
         
-        self.allCities = allCities
+        let sortedCities = allCities.sorted(by: { $0.name < $1.name })
+        
+        self.allCities = sortedCities
         self.cityTrie = CityTrie()
-        for city in allCities {
+        for city in sortedCities {
             self.cityTrie?.insert(city: city)
         }
     }
