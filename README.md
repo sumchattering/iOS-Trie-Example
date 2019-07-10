@@ -1,6 +1,8 @@
 #  Backbase Assignment
 
-###  Hey guys! So this turned out to be a bit more difficult than the few hours that I had assigned for it (Was fun though!) Now to finish the readme quickly lets go through your requirements and how they have been tackled in the project
+###  Hey guys! So this turned out to be a bit more difficult than the few hours that I had assigned for it (Was fun though!) Now to finish the readme quickly lets go through your requirements and how they have been tackled in the project. 
+
+Please note. Since I have paid a lot of attention on the performance I havent focused a lot on app architecture or localizations or other stuff. If you would like me to refactor this using VIPER or MVP please let me know and I will have it ready before our next round of interview. Usually I use VIPER in my projects.
 
 >>>> Download the list of cities 
 
@@ -36,18 +38,24 @@ We do have that. Didnt spend too much time on this but usually I dont use storyb
 
 >>>> When tapped, navigate the map to the coordinates of the city.
 
-
+This is done using a split view controller and a simple map view with one annotation.
 
 >>>> Contain a button that, when tapped, opens an information screen about the selected city. The code of this screen is available 
 
+I have added the code from the screen in AboutViewController
 
 >>>> Create a dynamic UI that follows the [wireframe](wireframes). Hence, when in [portrait](wireframes/portrait.png) different screens should be used for the list and map but when in [landscape](wireframes/landscape.png), a single screen should be used.
 
+I have tested on the iPhoneXR simulator and the split view controller does indeed have that behaviour as in the wireframes. (This might not be true for all screen sizes) 
 
 >>>> Provide unit tests showing that your search algorithm is displaying the correct results giving different inputs, including invalid inputs.
 
+These tests can be found in CityRepositoryTests, CityTests and CityTrieTests.
 
 >>>> Provide UI/unit tests for the information screen code we provided you. You are allowed to refactor if needed.
+
+
+
 
 ## Additional requirements/restrictions:
 
@@ -57,7 +65,7 @@ No databases have been used. The trie can be archived to optimize the load time 
 
 >>>> Provide a README.md explaining your approach to solve the search problem and any other important decision you took or assumptions you made during the implementation.
 
-You are reading it
+You are reading it :)
 
 >>>> You can preprocess the list into any other representation that you consider more efficient for searches and display. Provide information of why that representation is more efficient in the comments of the code.
 

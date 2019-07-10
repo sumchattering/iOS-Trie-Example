@@ -24,6 +24,9 @@ class CityMapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let button = UIButton(type: .infoDark)
+        button.addTarget(self, action: #selector(self.showInfoScreen), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
         // Do any additional setup after loading the view.
         configureView()
     }
@@ -33,6 +36,10 @@ class CityMapViewController: UIViewController {
             // Update the view.
             configureView()
         }
+    }
+    
+    @objc private func showInfoScreen() {
+        
     }
 
     private func addPin(title: String, coord: CityCoord) {
